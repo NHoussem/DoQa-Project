@@ -27,7 +27,7 @@ export const Logo = ({
         <div
           className={`absolute top-[22px] left-[448px] [font-family:'Montserrat',Helvetica] font-semibold text-sky-600 text-[256px] tracking-[0] leading-[normal] ${divClassName}`}
         >
-          DoQA
+          BAHTHI
         </div>
       </div>
     </div>

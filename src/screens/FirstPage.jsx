@@ -46,8 +46,8 @@ const FirstPage = () => {
   };
 
   return (
-    <div className="bg-white flex flex-row justify-center w-full ">
-      <div className="relative max-w-screen-2xl mx-auto">
+    <div className="bg-white flex flex-row justify-center w-full h-full">
+      <div className="relative w-full h-full flex flex-col">
         
         <div className="absolute w-full h-screen  [background:linear-gradient(180deg,rgb(110,231,183)_0%,rgb(96,165,250)_100%)]" />
         <div className="absolute w-full h-screen top-0 left-0 bg-white rounded-[1200px] blur-[480px]" />
@@ -57,10 +57,10 @@ const FirstPage = () => {
             src={Eclipse}
         />
         <Navbar className="relative"/>
-        <div className={`flex flex-col items-center  mt-12 relative ${BadFile || NoFile ? 'gap-0.5' : 'gap-10'} `}>
-          <div className="text-center">
+        <div className={`flex flex-col justify-center items-center  mt-12 relative ${BadFile || NoFile ? 'gap-0.5' : 'gap-10'}`}> 
+          <div className="text-center pt-10">
             <p className="text-5xl font-semibold text-black">
-              Welcome to <span className="text-sky-600">DoQA</span>
+              Welcome to <span className="text-sky-600">BAHTHI</span>
             </p>
             <p className="text-lg text-slate-600 mt-4">
               Please upload the file you would like to base your Q/A on
@@ -77,8 +77,8 @@ const FirstPage = () => {
             </div>
           )}
 
-          <div className=" inline-flex flex-col gap-[28px]">
-            <div className="flex flex-col w-[450px] h-[300px] items-center justify-center gap-[20px] relative mt-[-1.00px] ml-[-1.00px] mr-[-1.00px] rounded-[20px] border border-dashed border-slate-600">
+          <div className=" inline-flex flex-col gap-9">
+            <div className="flex flex-col w-80 h-52 md:w-[450px] md:h-[300px] items-center justify-center gap-[20px] relative mt-[-1.00px] ml-[-1.00px] mr-[-1.00px] rounded-[20px] border border-dashed border-slate-600">
               <div className="relative w-fit [font-family:'Inter-Medium',Helvetica] font-medium text-slate-600 text-[20px] text-center tracking-[0] leading-[normal] whitespace-nowrap">
                 <label
                   htmlFor="fileInput"
@@ -109,7 +109,7 @@ const FirstPage = () => {
             </div>
             <div lassName="flex items-center justify-center gap-[10px] px-0 py-[18px] relative self-stretch w-full flex-[0_0_auto] bg-[#b9c1cc] rounded-[8px]">
               <button
-                className={`w-full max-w-md bg-[#b9c1cc] rounded-lg py-4 text-white font-medium text-2xl text-center ${
+                className={`w-full max-w-md bg-[#b9c1cc] rounded-lg py-2 text-white font-medium text-2xl text-center ${
                   isFileUploaded
                     ? "bg-gradient-to-r from-green-500 to-blue-500"
                     : ""

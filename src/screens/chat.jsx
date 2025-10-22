@@ -2,22 +2,18 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export const AccueilChat = () => {
-  const navigate = useNavigate();
   const [userMessage, setUserMessage] = useState(null);
   const [modelAnswer, setModelAnser] = useState(null);
-  const handleReturnClick = () => {
-    navigate("/");
-  };
+
   const { fileName } = useParams();
   const handleSendClick = async (e) => {
     const inputElement = document.getElementById("inputtext");
     // Clear the input field after sending
     setUserMessage(inputElement.value);
-    setModelAnser(null)
+    setModelAnser(null);
     const url = `http://localhost:8000/ask/?file_path=uploads/${fileName}&question=${encodeURIComponent(
       inputElement.value
     )}`;
@@ -27,33 +23,22 @@ export const AccueilChat = () => {
         "Content-Type": "application/json",
       },
     });
-    inputElement.value=''
+    inputElement.value = "";
     if (!response.ok) {
       throw new Error("Failed to send the question to the server");
     }
 
     const data = await response.json();
-    console.log(data.answers[0].answer)
+    console.log(data.answers[0].answer);
     setModelAnser(data.answers[0]);
   };
   return (
-    <div className="flex flex-col">
-      <Navbar className="w-screen" />
-      <div className="bg-slate-100 flex flex-row flex-auto justify-center w-screen ">
-        <div className="flex flex-auto h-full">
-          <button
-            onClick={handleReturnClick}
-            className="Return  bg-white rounded-3xl flex-col justify-center items-center gap-2.5 inline-flex absolute w-[100px] h-[100px] top-[138px] left-[38px]">
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              className="text-[#0284C7] text-2xl pr-10"
-              alt="Return"
-            />
-          </button>
-        </div>
-        <div className="flex  flex-col w-full px-36 pt-12 items-start justify-between  bg-white rounded-[20px] overflow-hidden shadow-shadow h-[80vh] overflow-y-auto">
-          <div className="flex-col w items-end justify-center  flex relative self-stretch w-full flex-[0_0_auto] p-5">
-            <div className=" gap-[40px] flex items-center  relative self-stretch w-full flex-[0_0_auto] ">
+    <div className="flex flex-col w-screen h-screen">
+      <Navbar className="flex w-screen items-start" />
+      <div className="bg-slate-100 flex flex-row flex-auto justify-center  ">
+        <div className="flex  flex-col w-full  h-full items-center justify-between py-6 md:px-8">
+          <div className="flex-col w items-end justify-between  flex relative self-stretch w-full flex-[0_0_auto] p-5">
+            <div className=" gap-[40px] flex items-center  relative self-stretch w-full  ">
               <div className="flex flex-col  items-center justify-center gap-[10px] relative bg-white rounded-[10px]">
                 <div className=" ">
                   <div className="relative w-[38px] h-[36px]">
@@ -62,7 +47,7 @@ export const AccueilChat = () => {
                   </div>
                 </div>
               </div>
-              <p className="relative w-fit font-text-2xl-leading-8-font-medium font-[number:var(--text-2xl-leading-8-font-medium-font-weight)] text-slate-700 text-[length:var(--text-2xl-leading-8-font-medium-font-size)] tracking-[var(--text-2xl-leading-8-font-medium-letter-spacing)] leading-[var(--text-2xl-leading-8-font-medium-line-height)] whitespace-nowrap [font-style:var(--text-2xl-leading-8-font-medium-font-style)]">
+              <p className="w-full">
                 Great news! Your file has been successfully processed. How can I
                 assist you today?
               </p>
@@ -93,8 +78,8 @@ export const AccueilChat = () => {
                 </div>
                 <p className="relative flex-1 s font-text-2xl-leading-8-font-medium font-[number:var(--text-2xl-leading-8-font-medium-font-weight)] text-slate-700 text-[length:var(--text-2xl-leading-8-font-medium-font-size)] tracking-[var(--text-2xl-leading-8-font-medium-letter-spacing)] leading-[var(--text-2xl-leading-8-font-medium-line-height)] [font-style:var(--text-2xl-leading-8-font-medium-font-style)]">
                   {modelAnswer.answer}
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
                   Feel free to ask if you have any other questions!
                 </p>
               </div>
@@ -111,7 +96,8 @@ export const AccueilChat = () => {
             />
             <button
               onClick={handleSendClick}
-              className="flex items-center justify-center p-2 rounded-full bg-white shadow-md hover:shadow-lg focus:outline-none">
+              className="flex items-center justify-center p-2 rounded-full bg-white shadow-md hover:shadow-lg focus:outline-none"
+            >
               <FontAwesomeIcon
                 icon={faPaperPlane}
                 className="text-slate-400 text-2xl"
